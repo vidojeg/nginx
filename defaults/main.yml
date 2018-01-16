@@ -1,0 +1,4 @@
+---
+# defaults file for nginx
+site_path: "/usr/share/nginx/html"
+alerts_email: "infralerts@tradecore.com"

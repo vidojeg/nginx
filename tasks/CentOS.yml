@@ -1,0 +1,67 @@
+---
+# Nginx and certbot role for CentOS
+
+# nginx
+- name: Install dependencies
+  become: yes
+  yum:
+    name: epel-release
+    state: latest
+  notify:
+    - Update CentOS
+# install nginx
+- name: Install Nginx
+  become: yes
+  yum: 
+    name: nginx
+    state: latest
+  tags:
+    - nginx
+
+# add template
+- name: Configure Nginx
+  become: yes
+  template:
+    src: nginx.conf.j2
+    dest: "/etc/nginx/conf.d/{{ ansible_hostname }}.conf"
+    mode: 0644
+  tags:
+    - nginx
+  notify:
+    - Reload Nginx
+
+# certbot
+# install certbot
+- name: Install certbot
+  become: yes
+  yum: 
+    name: certbot
+    state: latest
+  tags: 
+    - certbot
+
+# add ssl
+- name: Create SSL certificate
+  become: yes
+  command: certbot certonly --webroot -w /usr/share/nginx/html --domain {{ ansible_hostname }} --email {{ alerts_email }} --agree-tos
+  tags:
+    - certbot
+
+- name: Secure SSL
+  become: yes
+  command: sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+  tags:
+    - certbot
+
+# add ssl template part in nginx conf
+- name: Configure Nginx
+  become: yes
+  template:
+    src: nginx-ssl.conf.j2
+    dest: "/etc/nginx/conf.d/{{ ansible_hostname }}.conf"
+    mode: 0644
+  tags:
+    - certbot
+  notify:
+    - Reload Nginx
+# reload nginx
