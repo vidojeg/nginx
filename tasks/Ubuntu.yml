@@ -1,7 +1,6 @@
 ---
 # Nginx and certbot role for Ubuntu
 
-# nginx
 # install nginx
 - name: Install Nginx
   become: yes
@@ -35,8 +34,6 @@
   notify:
     - Reload Nginx
 
-
-# certbot
 # install certbot
 - name: Add certbot repo
   become: yes
