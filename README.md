@@ -7,9 +7,9 @@ SSL certificate for statical sites.
 Requirements
 ------------
 
-Ansible 2.4
-CentOS 7 minimal (clear istallation)
-Ubuntu 16.04 minimal (clear istallation)
+  - Ansible 2.4
+  - CentOS 7 minimal (clear istallation)
+  - Ubuntu 16.04 minimal (clear istallation)
 
 Dependencies
 ------------
