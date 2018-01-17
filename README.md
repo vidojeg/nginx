@@ -1,8 +1,7 @@
 Nginx and Certbot
 =========
 
-Automatization for Nginx and Certbot. Istalling web server with(out)
-SSL certificate for statical sites.
+Automatization for Nginx and Certbot. Istalling web server with(out) SSL certificate for statical sites.
 
 Requirements
 ------------
@@ -13,11 +12,11 @@ Requirements
 
 Dependencies
 ------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+If you have install only Nginx use tags: *nginx*
 
 Example Playbook
 ----------------
+
 
     - hosts: all
       become: yes
